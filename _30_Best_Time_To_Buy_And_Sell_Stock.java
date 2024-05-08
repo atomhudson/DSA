@@ -9,7 +9,6 @@ public class _30_Best_Time_To_Buy_And_Sell_Stock {
                 int current_profit = prices[i] - buy_price;
                 max_profit = Math.max(current_profit,max_profit);
             }
-
         }
         return max_profit;
     }

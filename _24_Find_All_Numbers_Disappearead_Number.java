@@ -1,6 +1,3 @@
-import java.time.LocalTime;
-import java.util.Calendar;
-import java.util.Random;
 class foo {
     static String text = "foo";
 }

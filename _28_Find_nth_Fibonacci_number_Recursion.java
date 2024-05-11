@@ -34,9 +34,19 @@ public class _28_Find_nth_Fibonacci_number_Recursion {
         }
         return fibonaccinumber(n-1)+fibonaccinumber(n-2);
     }
+
+    static long fibonaccinumberusingformula(int n){
+        return (long) (Math.pow((1+Math.sqrt(5))/2,n) / Math.sqrt(5));
+    }
     public static void main(String[] args) {
         int ans = fibonaccinumber(5);
         System.out.println(ans);
+        System.out.println(" ");
+        for (int i = 0; i < 11; i++) {
+            System.out.println(fibonaccinumberusingformula(i));
+        }
+        System.out.println(" ");
+        System.out.println(fibonaccinumberusingformula(50));
     }
 }
 

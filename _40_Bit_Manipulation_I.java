@@ -1,9 +1,8 @@
 public class _40_Bit_Manipulation_I {
-
-
-
-
-
+    public static void main(String[] args) {
+        System.out.println(25 >> 1);
+        System.out.println(2 ^ 3);
+    }
 }
 // BitWise Operator
 
@@ -47,6 +46,18 @@ public class _40_Bit_Manipulation_I {
 // 4. Complement ( ~ )
 //               a =  1  0  1   1   0
 // complement of a =  0  1  0   0   1
+
+//  5.Left Shift Operator ( << )
+//  (10)base10 = (1010)base2    10 << 1
+//  Step 1: Computer convert 10 into binary 1010 << 1 = 1 0 1 0 0 = (20)base10.
+//  It the shift the binary digit by one position toward left.
+//  Basically: a << 1 = 2a.
+//  General Point: a << b = a * (2^b);
+
+// 6.Right Shift Operator ( >> )
+//    0011001 >> 1 = 001100
+//         25 >> 1 = 12
+// General: a >> b = a / (2^b);
 
 
 // Number Systems

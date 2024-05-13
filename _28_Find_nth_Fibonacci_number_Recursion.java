@@ -32,21 +32,28 @@ public class _28_Find_nth_Fibonacci_number_Recursion {
         if(n < 2){
             return n;
         }
-        return fibonaccinumber(n-1)+fibonaccinumber(n-2);
+        return fibonaccinumber(n -1 )+ fibonaccinumber(n -2);
     }
 
     static long fibonaccinumberusingformula(int n){
-        return (long) (Math.pow((1+Math.sqrt(5))/2,n) / Math.sqrt(5));
+        double sqrt5 = Math.sqrt(5);
+        double brac1 = (1 + sqrt5)/2;
+        double brac2 = (1 - sqrt5)/2; // this is least dominating term we can skip it
+        double result = (Math.pow(brac1, n) - Math.pow(brac2,n)) / sqrt5;
+        return (long) result;
+    }
+    static long fibonaccinumber2(int n ){
+        return (long) ((Math.pow(((1+Math.sqrt(5))/2),n)-Math.pow(((1-Math.sqrt(5))/2),n)) / Math.sqrt(5));
     }
     public static void main(String[] args) {
-        int ans = fibonaccinumber(5);
-        System.out.println(ans);
-        System.out.println(" ");
+        System.out.println(fibonaccinumber(5));
         for (int i = 0; i < 11; i++) {
             System.out.println(fibonaccinumberusingformula(i));
         }
         System.out.println(" ");
-        System.out.println(fibonaccinumberusingformula(50));
+        System.out.println("50th Fibonacci number using the formula created: "+fibonaccinumberusingformula(50));
+        System.out.println("50th Fibonacci number using the formula created: "+fibonaccinumber2(50));
+
     }
 }
 

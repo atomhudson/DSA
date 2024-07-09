@@ -1,8 +1,8 @@
-public class _59_CustomLinkedList {
+public class _59_CustomSinglyLinkedList {
     private Node head;
     private Node tail;
     private int size;
-    public _59_CustomLinkedList() {
+    public _59_CustomSinglyLinkedList() {
         this.size = 0;
     }
     public void insertFirst(int val){
@@ -102,6 +102,8 @@ public class _59_CustomLinkedList {
         }
         return "Node Not Found: NODE->null";
     }
+
+    
     private class Node{
         private int value;
         private Node next;

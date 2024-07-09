@@ -1,8 +1,8 @@
-public class _59_CustomSinglyLinkedList {
+public class _59_SinglyLinkedList {
     private Node head;
     private Node tail;
     private int size;
-    public _59_CustomSinglyLinkedList() {
+    public _59_SinglyLinkedList() {
         this.size = 0;
     }
     public void insertFirst(int val){

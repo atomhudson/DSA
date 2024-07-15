@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Vector;
+
 public class _59_SinglyLinkedList {
     private Node head;
     private Node tail;
@@ -102,8 +107,43 @@ public class _59_SinglyLinkedList {
         }
         return "Node Not Found: NODE->null";
     }
+    public int reverse(){
+        Node previous = null;
+        Node current = head;
+        while(current != null){
+            Node next = current.next;
+            previous = current;
+            current = next;
+        }
+        return previous.value;
+    }
+    public void middle(){
+        Node temp = head;
+        Vector<Integer> list = new Vector<Integer>();
+        while (temp != null){
+            list.add(temp.value);
+            temp = temp.next;
+        }
+        int middle = list.size() / 2;
+        Node middleNode = getNode(middle);
+        Node temp2 = middleNode;
+        while (temp2 != null){
+            System.out.print(temp2.value+" ");
+            temp2 = temp2.next;
+        }
+    }
+//    public int getRandom(){
+//        List<Integer> list = new ArrayList<>(size);
+//        Node temp = head;
+//        while(temp != null){
+//            list.add(temp.value);
+//            temp = temp.next;
+//        }
+//        int size = list.size();
+//        int random =
+//
+//    }
 
-    
     private class Node{
         private int value;
         private Node next;

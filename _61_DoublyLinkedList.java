@@ -63,6 +63,23 @@ public class _61_DoublyLinkedList {
         size++;
     }
 
+    public void delete(int val) {
+        Node temp = find(val);
+        if (temp == null) {
+            System.out.println("Node Does not Exist!");
+            return;
+        }
+        if (temp == head) {
+            head = temp.next;
+        } else {
+            temp.previous.next = temp.next;
+        }
+        if (temp.next != null) {
+            temp.next.previous = temp.previous;
+        }
+        size--;
+    }
+
     public Node find(int value){
         Node node = head;
         while (node != null){
@@ -82,12 +99,12 @@ public class _61_DoublyLinkedList {
         }
         System.out.println("∅(END)");
 
-        System.out.println("Print in Reverse");
-        while (last!=null){
-            System.out.print(last.val+" <- ");
-            last = last.previous;
-        }
-        System.out.println("START");
+//        System.out.println("Print in Reverse");
+//        while (last!=null){
+//            System.out.print(last.val+" <- ");
+//            last = last.previous;
+//        }
+//        System.out.println("START");
     }
 
     private class Node{

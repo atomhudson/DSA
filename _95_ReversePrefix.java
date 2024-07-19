@@ -1,4 +1,4 @@
-public class Scored {
+public class _95_ReversePrefix {
     public static String reversePrefix(String word, char ch) {
         String ans = "";
         String character = String.valueOf(ch);

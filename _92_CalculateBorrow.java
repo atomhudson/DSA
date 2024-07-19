@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Java1 {
+public class _92_CalculateBorrow {
     public String calculateBorrow(int num1,int num2){
         int count = 0;
         if (num2 > num1){
@@ -34,7 +34,7 @@ public class Java1 {
         int num1 = sc.nextInt();
         System.out.println("Enter Second number");
         int num2 = sc.nextInt();
-        Java1 j = new Java1();
+        _92_CalculateBorrow j = new _92_CalculateBorrow();
         System.out.println(j.calculateBorrow(num1,num2));
     }
 }

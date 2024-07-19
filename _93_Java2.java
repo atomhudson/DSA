@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Java2 {
+public class _93_Java2 {
     public int swap(String str){
         int res =0, j =0;
         for (int i = 0; i < str.length(); i++) {
@@ -22,7 +22,7 @@ public class Java2 {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the String:");
         String str = sc.next();
-        Java2 j = new Java2();
+        _93_Java2 j = new _93_Java2();
         System.out.println(j.swap(str));
     }
 }

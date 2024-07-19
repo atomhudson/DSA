@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Java3 {
+public class _94_maximum {
     public int maximum(int x, int n, int[] arr){
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
@@ -24,7 +24,7 @@ public class Java3 {
             System.out.print("Enter the "+i+"th number: ");
             arr[i] = sc.nextInt();
         }
-        Java3 j = new Java3();
+        _94_maximum j = new _94_maximum();
         System.out.println(j.maximum(x,n,arr));
     }
 }

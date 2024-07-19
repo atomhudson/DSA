@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class _4_Linear_Search_In_2D_Array {
+public class _04_Linear_Search_In_2D_Array {
     public static int[] LinearSearchIn2DArray(int[][] arr,int target){
         for (int row = 0; row < arr.length; row++ ){
             for(int column = 0; column < arr[row].length; column++){

@@ -1,4 +1,4 @@
-public class _2_Linear_Search_In_Range {
+public class _02_Linear_Search_In_Range {
     public static int LinearSearchInRange(int[] arr,int Start_Index,int End_Index,int Target){
         if (arr.length == 0){
             return -Integer.MAX_VALUE;

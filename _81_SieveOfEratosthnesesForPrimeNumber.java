@@ -1,6 +1,6 @@
 public class _81_SieveOfEratosthnesesForPrimeNumber {
     public static void main(String[] args) {
-        int n = 15;
+        int n = 22;
 //        this boolean array[primes] has all the value initialised to false;
 //        like if be print primes[0] than it print the {false}.
 //        primes[0......n] = false;

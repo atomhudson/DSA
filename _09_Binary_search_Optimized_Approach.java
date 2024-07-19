@@ -1,4 +1,4 @@
-public class _9_Binary_search_Optimized_Approach {
+public class _09_Binary_search_Optimized_Approach {
     static boolean BinarySearchOn2DArray(int[][] matrix, int target){
         int N = matrix.length;
         int M = matrix[0].length;

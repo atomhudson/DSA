@@ -1,4 +1,4 @@
-public class _3_Find_Min_Using_Linear_Search {
+public class _03_Find_Min_Using_Linear_Search {
     public static int FindingMinUsingLinearSearch(int[] arr){
         int Min_Element = arr[0];
         for(int element: arr){

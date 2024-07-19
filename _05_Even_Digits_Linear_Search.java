@@ -1,4 +1,4 @@
-public class _5_Even_Digits_Linear_Search {
+public class _05_Even_Digits_Linear_Search {
     static int EvenDigitCount(int[] arr){
         int count = 0;
         for (int element:arr){

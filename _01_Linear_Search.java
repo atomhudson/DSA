@@ -1,4 +1,4 @@
-public class _1_Linear_Search {
+public class _01_Linear_Search {
     public static int LinearSearch(int[] arr,int target){
         if (arr.length == 0){
             return Integer.MAX_VALUE;

@@ -1,5 +1,5 @@
 
-public class _8_Binary_Search_In_2D_Matrix {
+public class _08_Binary_Search_In_2D_Matrix {
     static boolean searchMatric(int[][] matrix, int target){
         for(int i = 0 ;i < matrix.length;i++){
             if(matrix[i][0] <= target && matrix[i][matrix[i].length - 1] >= target){

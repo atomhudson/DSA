@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class _6_Binary_Search {
+public class _06_Binary_Search {
     static int BinarySearch(int[] arr,int target){
         Arrays.sort(arr);
         int start = 0;

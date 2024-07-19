@@ -1,4 +1,4 @@
-public class _7_Order_Agnostics_Binary_Search {
+public class _07_Order_Agnostics_Binary_Search {
     static int OderAgnosticsBinarySearch(int[] arr,int target){
         if (arr.length == 0){
             return Integer.MIN_VALUE;

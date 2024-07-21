@@ -1,6 +1,6 @@
 public class _73_QueueMain {
     public static void main(String[] args) throws Exception{
-        _72_CustomQueue customQueue = new _72_CustomQueue();
+        _072_CustomQueue customQueue = new _072_CustomQueue();
         customQueue.insert(34);
         customQueue.insert(45);
         customQueue.insert(4);

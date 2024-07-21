@@ -1,6 +1,6 @@
 public class _78_QueueUsingStackMain {
     public static void main(String[] args) throws Exception{
-        _77_QueueUsingStackInsertionEfficient queueUsingStack = new _77_QueueUsingStackInsertionEfficient();
+        _077_QueueUsingStackInsertionEfficient queueUsingStack = new _077_QueueUsingStackInsertionEfficient();
         queueUsingStack.push(34);
         queueUsingStack.push(45);
         queueUsingStack.push(23);
@@ -15,7 +15,7 @@ public class _78_QueueUsingStackMain {
         System.out.println(queueUsingStack.isEmpty());
 
 
-        _79_QueueUsingStackRemovalEfficient removalEfficient = new _79_QueueUsingStackRemovalEfficient();
+        _079_QueueUsingStackRemovalEfficient removalEfficient = new _079_QueueUsingStackRemovalEfficient();
         removalEfficient.push(45);
         removalEfficient.push(4);
         removalEfficient.push(5);

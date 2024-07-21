@@ -1,4 +1,4 @@
-public class _76_DynamicQueue extends _74_CustomCircularQueue{
+public class _76_DynamicQueue extends _074_CustomCircularQueue {
     public _76_DynamicQueue() { super(); }
     public _76_DynamicQueue(int size) { super(size);}
     @Override

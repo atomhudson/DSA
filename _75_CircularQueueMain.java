@@ -1,6 +1,6 @@
 public class _75_CircularQueueMain {
     public static void main(String[] args) throws Exception{
-        _74_CustomCircularQueue customCircularQueue = new _74_CustomCircularQueue();
+        _074_CustomCircularQueue customCircularQueue = new _074_CustomCircularQueue();
         customCircularQueue.insert(34);
         customCircularQueue.insert(45);
         customCircularQueue.insert(4);

@@ -1,4 +1,4 @@
-public class _78_QueueUsingStackMain {
+public class _078_QueueUsingStackMain {
     public static void main(String[] args) throws Exception{
         _077_QueueUsingStackInsertionEfficient queueUsingStack = new _077_QueueUsingStackInsertionEfficient();
         queueUsingStack.push(34);

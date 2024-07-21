@@ -1,8 +1,8 @@
-public class _71_DynamicCustomStack extends _068_CustomStack {
-    public _71_DynamicCustomStack() {
+public class _071_DynamicCustomStack extends _068_CustomStack {
+    public _071_DynamicCustomStack() {
         super();            // It Will Call _68_CustomStack()
     }
-    public _71_DynamicCustomStack(int size) {
+    public _071_DynamicCustomStack(int size) {
         super(size);        //It Will Call _68_CustomStack(int size)
     }
     @Override

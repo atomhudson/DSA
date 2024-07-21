@@ -1,6 +1,6 @@
-public class _70_StackMain {
+public class _070_StackMain {
     public static void main(String[] args) throws _069_StackException {
-        _068_CustomStack dynamicCustomStack = new _71_DynamicCustomStack();
+        _068_CustomStack dynamicCustomStack = new _071_DynamicCustomStack();
         dynamicCustomStack.push(34);
         dynamicCustomStack.push(56);
         dynamicCustomStack.push(3);

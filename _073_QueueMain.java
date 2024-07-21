@@ -1,4 +1,4 @@
-public class _73_QueueMain {
+public class _073_QueueMain {
     public static void main(String[] args) throws Exception{
         _072_CustomQueue customQueue = new _072_CustomQueue();
         customQueue.insert(34);

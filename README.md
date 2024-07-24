@@ -9,9 +9,12 @@ Welcome to the Data Structures and Algorithms (DSA) repository! This repository 
 - [Topics Covered](#topics-covered)
   - [Data Structures](#data-structures)
   - [Algorithms](#algorithms)
-- [Setup Instructions](#setup-instructions)
-- [Contributing](#contributing)
-- [License](#license)
+
+[//]: # (- [Setup Instructions]&#40;#setup-instructions&#41;)
+
+[//]: # (- [Contributing]&#40;#contributing&#41;)
+
+[//]: # (- [License]&#40;#license&#41;)
 
 ## Introduction
 
@@ -84,3 +87,4 @@ To get the most out of this repository, you should have:
    - Minimum spanning tree (Kruskal's, Prim's)
    - Shortest path algorithms (Dijkstra's, Bellman-Ford, Floyd-Warshall)
    - Network flow algorithms -->
+

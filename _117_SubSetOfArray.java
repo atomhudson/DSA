@@ -5,7 +5,7 @@ import java.util.List;
 public class _117_SubSetOfArray {
 //    OR SUB Sequence of Array
     public static void main(String[] args) {
-        int[] arr = {4,5,5};
+        int[] arr = {5,6,6};
         System.out.println(subset(arr));
         System.out.println(subset1(arr));
     }

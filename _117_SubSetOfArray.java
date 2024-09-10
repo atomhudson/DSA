@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+// Both Approach have Time Complexity:O(2^N X N)
 public class _117_SubSetOfArray {
 //    OR SUB Sequence of Array
     public static void main(String[] args) {

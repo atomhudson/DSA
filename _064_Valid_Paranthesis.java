@@ -3,7 +3,6 @@ import java.util.Stack;
 
 public class _064_Valid_Paranthesis {
     public static boolean valid(String x){
-        ArrayList<Integer> arrayList = new ArrayList<>();
         Stack<Character> stack = new Stack<>();
         for (char c: x.toCharArray()){
             if (c == '{') stack.push('}');

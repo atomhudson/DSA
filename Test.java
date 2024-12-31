@@ -18,5 +18,13 @@ public class Test {
     }
     public static void main(String[] args) {
         System.out.println(solution("{[()()]}"));
+//        List<String> list = new ArrayList<>();
+//        list.add("abc");
+//        list.add("def");
+//        list.add("ghi");
+//        list.add("khl");
+//        System.out.println(list);
+//        list.remove("def");
+//        System.out.println(list);
     }
 }

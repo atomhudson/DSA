@@ -7,6 +7,7 @@ public class _059_SinglyLinkedList {
     public _059_SinglyLinkedList() {
         this.size = 0;
     }
+
     public void insertFirst(int val){
         Node node = new Node(val);
         node.next = head;

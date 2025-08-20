@@ -1,13 +1,13 @@
 public class _060_CustomLinkedListMain {
         public static void main(String[] args) {
                 _059_SinglyLinkedList list = new _059_SinglyLinkedList();
-                list.insertFirst(3);
-                list.insertFirst(4);
-                list.insertFirst(8);
-                list.insertLast(12);
-                list.insertFirst(7);
-                list.insertLast(99);
-                list.justInsert(55,0);
+//                list.insertFirst(3);
+//                list.insertFirst(4);
+//                list.insertFirst(8);
+//                list.insertLast(12);
+//                list.insertFirst(7);
+//                list.insertLast(99);
+//                list.justInsert(55,5);
 
                 System.out.print("Original Linked List: [");
                 list.display();
@@ -15,38 +15,38 @@ public class _060_CustomLinkedListMain {
 
                 System.out.printf("\n-----------------------------------------");
 
-                System.out.printf("\nBefore Deletion From Start: ");
-                list.display();
-                System.out.printf("\nDeleted Value: "+list.deleteFirst());
-                System.out.printf("\nAfter Deletion From Start: ");
-                list.display();
-
-
-                System.out.printf("\n-----------------------------------------");
-
-
-                System.out.printf("\nBefore Deletion from Last: ");
-                list.display();
-                System.out.printf("\nDeleted Value: "+list.deleteLast());
-                System.out.printf("\nAfter Deletion From Last: ");
-                list.display();
-
-                System.out.printf("\n-----------------------------------------");
-
-                System.out.printf("\nBefore Deletion: ");
-                list.display();
-                System.out.printf("\nDeleted Value: "+list.delete(1));
-                System.out.printf("\nAfter Deletion: ");
-                list.display();
-
-                System.out.printf("\n-----------------------------------------");
-
-                System.out.printf("\nOutput: "+list.find(12));
-
-                System.out.println();
-                System.out.println(list.reverse());
-
-                list.middle();
+//                System.out.printf("\nBefore Deletion From Start: ");
+//                list.display();
+//                System.out.printf("\nDeleted Value: "+list.deleteFirst());
+//                System.out.printf("\nAfter Deletion From Start: ");
+//                list.display();
+//
+//
+//                System.out.printf("\n-----------------------------------------");
+//
+//
+//                System.out.printf("\nBefore Deletion from Last: ");
+//                list.display();
+//                System.out.printf("\nDeleted Value: "+list.deleteLast());
+//                System.out.printf("\nAfter Deletion From Last: ");
+//                list.display();
+//
+//                System.out.printf("\n-----------------------------------------");
+//
+//                System.out.printf("\nBefore Deletion: ");
+//                list.display();
+//                System.out.printf("\nDeleted Value: "+list.delete(1));
+//                System.out.printf("\nAfter Deletion: ");
+//                list.display();
+//
+//                System.out.printf("\n-----------------------------------------");
+//
+//                System.out.printf("\nOutput: "+list.find(12));
+//
+//                System.out.println();
+//                System.out.println(list.reverse());
+//
+//                list.middle();
 
 
 //                System.out.printf("-----------------------------------------\n");

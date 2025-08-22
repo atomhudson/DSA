@@ -10,6 +10,8 @@ package Data_Structures;
 // DIS_ADV1: Access time complexity is more.
 // DIS_ADV2: More Memory space is required.(to save both data and address of next node).
 
+import java.lang.ref.WeakReference;
+
 public class _002_LinkedList {
 
     static class Node{
@@ -57,6 +59,60 @@ public class _002_LinkedList {
         temp.next = new_node;
     }
 
+    public void deleteFromBegining(){
+        if (head == null) {
+            System.out.println("List is empty.");
+            return;
+        }
+        Node temp = head;
+        head = temp.next;
+        temp.next = null;
+    }
+
+    public void deleteFromLast(){
+        if (head == null) {
+            System.out.println("List is empty.");
+            return;
+        }
+        Node temp = head;
+        while(temp.next.next != null){
+            temp = temp.next;
+        }
+        temp.next = null;
+    }
+
+    public void deleteFromSpecificPosition(int index){
+        if (head == null) {
+            System.out.println("List is empty.");
+            return;
+        }
+
+        if (index == 0) {
+            head = head.next;
+            return;
+        }
+        Node temp = head;
+        for (int i = 0; i < index - 1 && temp.next != null; i++) {
+            temp = temp.next;
+        }
+        if (temp.next == null) {
+            System.out.println("Index out of range.");
+            return;
+        }
+        temp.next = temp.next.next;
+    }
+
+    public boolean isPalindrome(Node head){
+        Node temp = head;
+        StringBuilder list = new StringBuilder();
+        while(temp != null){
+            list.append(temp.value);
+            temp = temp.next;
+        }
+        String original = list.toString();
+        String reversed = new StringBuilder(original).reverse().toString();
+        return original.equals(reversed);
+    }
     public void traverse(){
         Node temp = head;
         while(temp != null){
@@ -68,26 +124,41 @@ public class _002_LinkedList {
     }
     public static void main(String[] args) {
         _002_LinkedList linkedList = new _002_LinkedList();
-        linkedList.insertInLast(10);
-        linkedList.insertInLast(20);
-        linkedList.insertInLast(30);
-        linkedList.insertInLast(40);
-        linkedList.insertInLast(50);
-        linkedList.insertInLast(60);
-        linkedList.traverse();
-        linkedList.insertInBegining(10);
-        linkedList.insertInBegining(20);
-        linkedList.insertInBegining(30);
-        linkedList.insertInBegining(40);
-        linkedList.insertInBegining(50);
-        linkedList.insertInBegining(60);
-        linkedList.traverse();
-        linkedList.insertInSpecificPosition(10,0);
-        linkedList.insertInSpecificPosition(20,1);
-        linkedList.insertInSpecificPosition(30,2);
-        linkedList.insertInSpecificPosition(40,3);
-        linkedList.insertInSpecificPosition(50,4);
-        linkedList.insertInSpecificPosition(60,5);
-        linkedList.traverse();
+        linkedList.insertInLast(1);
+        linkedList.insertInLast(2);
+//        linkedList.insertInLast(2);
+//        linkedList.insertInLast(1);
+        System.out.println(linkedList.isPalindrome(linkedList.head));
+//        linkedList.insertInLast(10);
+//        linkedList.insertInLast(20);
+//        linkedList.insertInLast(30);
+//        linkedList.insertInLast(40);
+//        linkedList.insertInLast(50);
+//        linkedList.insertInLast(60);
+//        linkedList.traverse();
+//        linkedList.insertInBegining(9);
+//        linkedList.insertInBegining(8);
+//        linkedList.insertInBegining(7);
+//        linkedList.insertInBegining(6);
+//        linkedList.insertInBegining(5);
+//        linkedList.insertInBegining(4);
+//        linkedList.traverse();
+//        linkedList.deleteFromBegining();
+//        linkedList.traverse();
+//        linkedList.deleteFromBegining();
+//        linkedList.traverse();
+//        linkedList.deleteFromLast();
+//        linkedList.traverse();
+//        linkedList.deleteFromLast();
+//        linkedList.traverse();
+//        linkedList.insertInSpecificPosition(1,0);
+//        linkedList.insertInSpecificPosition(2,1);
+//        linkedList.insertInSpecificPosition(3,2);
+//        linkedList.insertInSpecificPosition(4,3);
+//        linkedList.insertInSpecificPosition(5,4);
+//        linkedList.traverse();
+//        linkedList.deleteFromSpecificPosition(0);
+//        linkedList.traverse();
+
     }
 }

@@ -1,0 +1,4 @@
+package Algorithm_and_Practice;
+
+public class _114_Numeric_String_Template_CodeForces {
+}

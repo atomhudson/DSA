@@ -24,7 +24,7 @@ This repository is designed for individuals who have a basic grasp of programmin
 
 To get the most out of this repository, you should have:
 
-- Basic programming knowledge in a language like Java, Python, or C++
+- Basic programming knowledge in a language like Java, Python, or Algorithm_and_Practice.C++
 - Understanding of basic programming concepts such as variables, loops, and conditionals
 - Familiarity with basic data structures (arrays, linked lists) and algorithms (sorting, searching)
 

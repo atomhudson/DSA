@@ -2,7 +2,7 @@ package Data_Structures;
 
 import java.util.Stack;
 
-public class _010_Basic_Calculator {
+public class _011_Basic_Calculator {
     private static int precedence(char ch){
         return switch (ch) {
             case '+', '-' -> 1;

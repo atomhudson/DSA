@@ -61,7 +61,7 @@ class MyHashMap {
  * int param_2 = obj.get(key);
  * obj.remove(key);
  */
-public class _011_Design_HashMap {
+public class _012_Design_HashMap {
     public static void main(String[] args) {
         MyHashMap map = new MyHashMap();
         map.put(1, 2);

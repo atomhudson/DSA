@@ -1,6 +1,6 @@
 package Data_Structures;
 
-public class _012_Swaps_Nodes_In_Pair {
+public class _013_Swaps_Nodes_In_Pair {
 
     static class Node{
         private int value;

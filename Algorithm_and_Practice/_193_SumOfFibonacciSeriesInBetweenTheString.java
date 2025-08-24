@@ -2,7 +2,7 @@ package Algorithm_and_Practice;/*
 ◆ Consider a string Str, pick each integer from the Fibonacci series
 and insert one by one into Str such that each character of Str is
 followed by the integer picked from Fibonacci series.
-Next, find the sum all the integers picked and add it at the beginning
+Next, find the printInc all the integers picked and add it at the beginning
 of Str.
 
 Sample Input1:

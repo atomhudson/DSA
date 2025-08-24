@@ -85,16 +85,15 @@ import java.util.Scanner;
  * 5. Strict Binary Tree:
  *    - If there are N leaf nodes, then there are N-1 internal nodes.
  *    - Number of leaf nodes = Number of internal nodes + 1.
- *
+
  *  Implementation:
  *  1. Linked Representation.
  *  2. Sequential -> using array.
  *
  */
 public class _209_Binary_Tree {
-    public _209_Binary_Tree(){
+    public _209_Binary_Tree(){}
 
-    }
     private static class Node{
         int value;
         Node left;
@@ -102,7 +101,6 @@ public class _209_Binary_Tree {
         public Node(int value){
             this.value = value;
         }
-
     }
     private Node root;
 //    insert Elements
@@ -158,7 +156,7 @@ public class _209_Binary_Tree {
         }else{
             System.out.println(node.value);
         }
-        prettyDisplay(node.left,level+1);;
+        prettyDisplay(node.left,level+1);
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

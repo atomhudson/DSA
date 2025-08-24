@@ -9,7 +9,7 @@ where a lucky number S of that day is written.
 It was written by an older man to build some interest in math among
 the office employees. Every day he used to note the numbers in his dairy.
 He did a lot of math on it and found that if he takes the last N numbers
-in sequence then the lucky number is equal to the sum of all the numbers
+in sequence then the lucky number is equal to the printInc of all the numbers
 that have repeated odd number of times.
 
 ◆ Now Rock wants to help the old man by replacing the board with a digital,

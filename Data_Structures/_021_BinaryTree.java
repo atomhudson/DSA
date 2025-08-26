@@ -77,43 +77,44 @@
   * </ol>
   *
   * <hr/>
-  *  * <h2>Binary Tree Concepts & Implementation</h2>
-  *  *
-  *  * <p>This class demonstrates the basic structure of a Binary Tree
-  *  * and provides utility methods to compute:</p>
-  *  * <ul>
-  *  *   <li><b>Size</b> → Number of nodes in the tree</li>
-  *  *   <li><b>Sum</b> → Sum of all node values</li>
-  *  *   <li><b>Maximum</b> → Largest value in the tree</li>
-  *  *   <li><b>Height</b> → Longest path from root to a leaf (in terms of edges)</li>
-  *  *   <li><b>Display</b> → Prints the tree in root → left → right fashion</li>
-  *  * </ul>
-  *  *
-  *  * <hr/>
-  *  * <h3>Binary Tree Used in <code>main</code>:</h3>
-  *  *
-  *  * <pre>
-  *  *               (1)
-  *  *              /   \
-  *  *            (4)   (7)
-  *  *            / \   /
-  *  *          (2) (5) (8)
-  *  * </pre>
-  *  *
-  *  * <ul>
-  *  *   <li>Size = 6</li>
-  *  *   <li>Sum = 27</li>
-  *  *   <li>Max = 8</li>
-  *  *   <li>Height = 2</li>
-  *  * </ul>
-  *  *
-  *  * <hr/>
-  *  * <h3>Notes:</h3>
-  *  * <ul>
-  *  *   <li>Height is defined as number of edges in the longest path.</li>
-  *  *   <li>If a tree has only root → height = 0.</li>
-  *  *   <li>If a tree is empty → size = 0, sum = 0, max = -∞.</li>
-  *  * </ul>
+  <h2>Binary Tree Concepts & Implementation</h2>
+  *
+  * <p>This class demonstrates the basic structure of a Binary Tree
+  * and provides utility methods to compute:</p>
+  * <ul>
+  *   <li><b>Size</b> → Number of nodes in the tree</li>
+  *   <li><b>Sum</b> → Sum of all node values</li>
+  *   <li><b>Maximum</b> → Largest value in the tree</li>
+  *   <li><b>Height</b> → Longest path from root to a leaf (in terms of edges)</li>
+  *   <li><b>Display</b> → Prints the tree in root → left → right fashion</li>
+  * </ul>
+  *
+  * <hr/>
+  * <h3>Binary Tree Used in <code>main</code>:</h3>
+  *
+  * <pre>
+  *               (1)
+  *              /   \
+  *            (4)   (7)
+  *            / \   /
+  *          (2) (5) (8)
+  * </pre>
+  *
+  * <ul>
+  *   <li>Size = 6</li>
+  *   <li>Sum = 27</li>
+  *   <li>Max = 8</li>
+  *   <li>Height = 2</li>
+  * </ul>
+  *
+  * <hr/>
+  * <h3>Notes:</h3>
+  * <ul>
+  *   <li>Height is defined as number of edges in the longest path.</li>
+  *   <li>If a tree has only root → height = 0.</li>
+  *   <li>If a tree is empty → size = 0, sum = 0, max = -∞.</li>
+  * </ul>
+  *
   */
 
 
@@ -132,15 +133,36 @@
      /**
       * Prints each node in format:
       * <pre> value -> leftChild, rightChild </pre>
+      * <ul> <li>This is Preorder Traversal</li></ul>
+      * <pre>ROOT --> LEFT --> RIGHT</pre>
       */
-     public static void display(Node root) {
+     public static void preorder(Node root) {
          if (root == null) return;
-         System.out.print(root.value + " -> ");
-         System.out.print(root.left == null ? "null, " : root.left.value + ", ");
-         System.out.print(root.right == null ? "null" : root.right.value);
-         System.out.println();
-         display(root.left);
-         display(root.right);
+         System.out.print(root.value + " ");
+         preorder(root.left);
+         preorder(root.right);
+     }
+
+     /**
+      * Format:
+      * <pre>LEFT -> ROOT -> RIGHT</pre>
+      */
+     public static void inorder(Node root){
+         if (root == null) return;
+         inorder(root.left);
+         System.out.print(root.value + " ");
+         inorder(root.right);
+     }
+
+     /**
+      * Format:
+      * <pre>LEFT -> RIGHT -> ROOT</pre>
+      */
+     public static void postorder(Node root){
+         if (root == null) return;
+         postorder(root.left);
+         postorder(root.right);
+         System.out.print(root.value+" ");
      }
 
      /** @return total number of nodes in the tree */
@@ -173,18 +195,28 @@
 
      public static void main(String[] args) {
          Node root = new Node(1);
-         Node a = new Node(4);
-         Node b = new Node(7);
-         Node c = new Node(2);
+         Node a = new Node(2);
+         Node b = new Node(3);
+         Node c = new Node(4);
          Node d = new Node(5);
-         Node e = new Node(8);
+         Node e = new Node(6);
+         Node f = new Node(7);
 
          root.left = a;
          root.right = b;
+
          a.left = c;
          a.right = d;
-         b.left = e;
 
+         b.left = e;
+         b.right = f;
+
+         System.out.print("Pre-Order Traversal: ");preorder(root);
+         System.out.println();
+         System.out.print("In-Order Traversal: ");inorder(root);
+         System.out.println();
+         System.out.print("Post-Order Traversal: ");postorder(root);
+         System.out.println();
          System.out.println("Size: " + size(root));
          System.out.println("Sum: " + sum(root));
          System.out.println("Max: " + max(root));

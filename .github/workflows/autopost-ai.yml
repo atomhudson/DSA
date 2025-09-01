@@ -11,26 +11,34 @@ jobs:
     steps:
       - name: Checkout DSA repo
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 2  # Fetch at least 2 commits for comparison
 
       - name: Get changed files
         id: files
         run: |
-          if [ -z "${{ github.event.before }}" ]; then
-            echo "files<<EOF" >> $GITHUB_OUTPUT
-            git diff --name-only HEAD~1 ${{ github.sha }} | grep '\.java$' || true >> $GITHUB_OUTPUT
-            echo "EOF" >> $GITHUB_OUTPUT
-          else
-            echo "files<<EOF" >> $GITHUB_OUTPUT
-            git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '\.java$' || true >> $GITHUB_OUTPUT
-            echo "EOF" >> $GITHUB_OUTPUT
-          fi
+          # Get changed Java files from the current commit
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD | grep '\.java$' || true)
+          echo "Changed Java files found:"
+          echo "$CHANGED_FILES"
+          
+          # Set the output using the new format
+          {
+            echo "files<<EOF"
+            echo "$CHANGED_FILES"
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
+
+      - name: Debug - Show changed files
+        run: |
+          echo "Files output: '${{ steps.files.outputs.files }}'"
 
       - name: Checkout Blog repo
         uses: actions/checkout@v3
         with:
           repository: atomhudson/atomhudsoneng-blog
           path: blog
-          token: ${{ secrets.BLOG_PAT }}   # must be set in DSA repo secrets!
+          token: ${{ secrets.BLOG_PAT }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v3

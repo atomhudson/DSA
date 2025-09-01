@@ -15,16 +15,22 @@ jobs:
       - name: Get changed files
         id: files
         run: |
-          echo "files<<EOF" >> $GITHUB_OUTPUT
-          git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '\.java$' || true >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          if [ -z "${{ github.event.before }}" ]; then
+            echo "files<<EOF" >> $GITHUB_OUTPUT
+            git diff --name-only HEAD~1 ${{ github.sha }} | grep '\.java$' || true >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          else
+            echo "files<<EOF" >> $GITHUB_OUTPUT
+            git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '\.java$' || true >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
 
       - name: Checkout Blog repo
         uses: actions/checkout@v3
         with:
           repository: atomhudson/atomhudsoneng-blog
           path: blog
-          token: ${{ secrets.BLOG_PAT }}
+          token: ${{ secrets.BLOG_PAT }}   # must be set in DSA repo secrets!
 
       - name: Setup Node.js
         uses: actions/setup-node@v3

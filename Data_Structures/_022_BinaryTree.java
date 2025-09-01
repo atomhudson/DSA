@@ -1,9 +1,6 @@
 package Data_Structures;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class _022_BinaryTree {
     public static class Node {
@@ -244,7 +241,7 @@ public class _022_BinaryTree {
 
     public static void nodeToRootPath(Node root, List<Integer> path){
         if (root == null) return;
-        path.add(root.value);
+        path.add(Integer.valueOf(root.value));
 
         // Print current node -> root path (reverse order of path list)
         System.out.print("Node " + root.value + " -> Root Path: ");
@@ -307,6 +304,38 @@ public class _022_BinaryTree {
         return left != null ? left : right;
     }
 
+    public static List<List<Integer>> zigzagPrinting(Node root) {
+        int height = heightOfTree(root);
+        List<List<Integer>> ans = new ArrayList<>();
+
+        for (int i = 1; i <= height; i++) {
+            List<Integer> arr = nthLevelDataList(root, i, i % 2 == 1); // odd level = left->right
+            if (!arr.isEmpty()) ans.add(arr);
+        }
+        return ans;
+    }
+
+    private static List<Integer> nthLevelDataList(Node root, int level, boolean leftToRight) {
+        if (root == null) return new ArrayList<>();
+        List<Integer> ans = new ArrayList<>();
+        if (level == 1) {
+            ans.add(Integer.valueOf(root.value));
+            return ans;
+        }
+        if (leftToRight) {
+            ans.addAll(nthLevelDataList(root.left, level - 1, leftToRight));
+            ans.addAll(nthLevelDataList(root.right, level - 1, leftToRight));
+        } else {
+            ans.addAll(nthLevelDataList(root.right, level - 1, leftToRight));
+            ans.addAll(nthLevelDataList(root.left, level - 1, leftToRight));
+        }
+        return ans;
+    }
+
+    private static int heightOfTree(Node root) {
+        if (root == null) return 0;
+        return 1 + Math.max(heightOfTree(root.left), heightOfTree(root.right));
+    }
 
     public static void main(String[] args) {
         Node root = new Node(1);
@@ -336,6 +365,7 @@ public class _022_BinaryTree {
         System.out.println(nodeToRootPath(root,f).contains("3"));
         System.out.println(lowestCommonAncestor(root,e,d).value);
         System.out.println(lowestCommon_Ancestor(root,e,d).value);
+        System.out.println(zigzagPrinting(root));
 
     }
 }

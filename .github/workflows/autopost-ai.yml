@@ -1,0 +1,51 @@
+name: Auto Docs to Blog
+
+on:
+  push:
+    paths:
+      - '**.java'   # sirf Java file changes pe chalega
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout DSA repo
+        uses: actions/checkout@v3
+
+      - name: Get changed files
+        id: files
+        run: |
+          echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '\.java$' || true)" >> $GITHUB_OUTPUT
+
+      - name: Checkout Blog repo
+        uses: actions/checkout@v3
+        with:
+          repository: atomhudson/atomhudsoneng-blog
+          path: blog
+          token: ${{ secrets.BLOG_PAT }}
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install deps
+        run: npm install openai @octokit/rest
+
+      - name: Generate Docs with Gemini
+        run: node .github/scripts/genDocs.js
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          BLOG_PATH: blog/content/posts
+          GITHUB_REPO: ${{ github.repository }}
+          COMMIT_SHA: ${{ github.sha }}
+          FILES: ${{ steps.files.outputs.files }}
+
+      - name: Commit & Push to blog
+        run: |
+          cd blog
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add content/posts
+          git commit -m "Auto docs update from ${{ github.repository }}"
+          git push

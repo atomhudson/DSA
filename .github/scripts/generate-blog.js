@@ -1,72 +1,45 @@
 import fs from "fs";
 import path from "path";
-import OpenAI from "openai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const openai = new OpenAI({ apiKey: process.env.GEMINI_API_KEY });
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-// Root folder where your Java code lives
-// Root folder where your Java code lives
-// ❌ old (wrong for your repo)
-// const SRC_DIR = "./src/main/java/com/atomhudson/DSA/Data_Structures";
+// 1. Read changed Java files
+const files = fs
+  .readdirSync("./src/main/java/com/atomhudson/DSA/Data_Structures/")
+  .filter((f) => f.endsWith(".java"));
 
-// ✅ new (your actual repo structure)
-const SRC_DIR = "./Data_Structures";
-const BLOG_PATH = process.env.BLOG_PATH || "./docs";
-
-function getAllJavaFiles(dir) {
-  let results = [];
-  const list = fs.readdirSync(dir);
-
-  list.forEach((file) => {
-    const fullPath = path.join(dir, file);
-    const stat = fs.statSync(fullPath);
-
-    if (stat && stat.isDirectory()) {
-      results = results.concat(getAllJavaFiles(fullPath));
-    } else if (file.endsWith(".java")) {
-      results.push(fullPath);
-    }
-  });
-
-  return results;
-}
-
-async function run() {
-  const files = getAllJavaFiles(SRC_DIR);
-  console.log(`📂 Found ${files.length} Java files`);
-
+// 2. Generate markdown docs for each file
+async function generateDocs() {
   for (const file of files) {
-    const code = fs.readFileSync(file, "utf-8");
+    const filePath = path.join(
+      "./src/main/java/com/atomhudson/DSA/Data_Structures/",
+      file
+    );
+    const code = fs.readFileSync(filePath, "utf8");
 
-    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+    const prompt = `
+You are a technical writer. Explain this Java code in detail, step by step,
+including its workflow, important methods, and use cases.
+Return the output in Markdown format.
 
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",   // or "gpt-4o"
-      messages: [
-        { role: "system", content: "You are an AI that generates developer-friendly documentation in Markdown." },
-        { role: "user", content: `Generate a detailed explanation of this Java class:\nFile: ${file}\nCode:\n${code}` }
-      ]
-    });
-
-
-    const explanation = response.choices[0].message.content;
-    const mdContent = `---
-title: "${path.basename(file)}"
-date: ${new Date().toISOString()}
----
-
-## 📂 File: ${file}
-
-${explanation}
+File: ${file}
+Code:
+${code}
 `;
 
-    const safeName = file.replace(/[\/\\]/g, "_").replace(".java", ".md");
-    fs.writeFileSync(`${BLOG_PATH}/${safeName}`, mdContent);
-    console.log(`✅ Generated: ${safeName}`);
+    try {
+      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+      const result = await model.generateContent(prompt);
+      const text = result.response.text();
+
+      const outFile = `./docs/${file.replace(".java", ".md")}`;
+      fs.writeFileSync(outFile, text, "utf8");
+      console.log(`✅ Generated docs for ${file}`);
+    } catch (err) {
+      console.error(`❌ Failed for ${file}:`, err.message);
+    }
   }
 }
 
-run().catch((err) => {
-  console.error("❌ Error generating docs:", err);
-  process.exit(1);
-});
+generateDocs();

@@ -93,7 +93,7 @@ public class _023_BinaryTree {
         Node n10 = new Node(100);
         n8.left = n10;
 
-//        System.out.println(levelOrderTraversalII(root));
+        System.out.println(levelOrderTraversalII(root));
         pathSum(root,22);
 
     }

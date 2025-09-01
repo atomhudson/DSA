@@ -37,13 +37,15 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install deps
-        run: npm install openai
+      - name: Init Node project
+        run: npm init -y
 
-      - name: Generate Docs
+      - name: Install deps
+        run: npm install @google/generative-ai
+
+      - name: Generate Docs with Gemini
         run: node .github/scripts/generate-blog.js
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           BLOG_PATH: blog/content/posts
           GITHUB_REPO: ${{ github.repository }}

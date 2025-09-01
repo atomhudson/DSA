@@ -4,18 +4,31 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-// 1. Read changed Java files
-const files = fs
-  .readdirSync("./src/main/java/com/atomhudson/DSA/Data_Structures/")
-  .filter((f) => f.endsWith(".java"));
+// Recursively collect all .java files
+function getJavaFiles(dir) {
+  let results = [];
+  const list = fs.readdirSync(dir);
 
-// 2. Generate markdown docs for each file
+  list.forEach((file) => {
+    const filePath = path.join(dir, file);
+    const stat = fs.statSync(filePath);
+
+    if (stat && stat.isDirectory()) {
+      results = results.concat(getJavaFiles(filePath)); // recurse
+    } else if (file.endsWith(".java")) {
+      results.push(filePath);
+    }
+  });
+
+  return results;
+}
+
+// Collect all Java files in repo root
+const files = getJavaFiles("./");
+
+// Generate docs for each file
 async function generateDocs() {
-  for (const file of files) {
-    const filePath = path.join(
-      "./src/main/java/com/atomhudson/DSA/Data_Structures/",
-      file
-    );
+  for (const filePath of files) {
     const code = fs.readFileSync(filePath, "utf8");
 
     const prompt = `
@@ -23,7 +36,7 @@ You are a technical writer. Explain this Java code in detail, step by step,
 including its workflow, important methods, and use cases.
 Return the output in Markdown format.
 
-File: ${file}
+File: ${path.basename(filePath)}
 Code:
 ${code}
 `;
@@ -33,11 +46,16 @@ ${code}
       const result = await model.generateContent(prompt);
       const text = result.response.text();
 
-      const outFile = `./docs/${file.replace(".java", ".md")}`;
-      fs.writeFileSync(outFile, text, "utf8");
-      console.log(`✅ Generated docs for ${file}`);
+      // Save docs in ./docs folder, preserving relative path
+      const relPath = path.relative("./", filePath).replace(".java", ".md");
+      const outPath = path.join("./docs", relPath);
+
+      fs.mkdirSync(path.dirname(outPath), { recursive: true });
+      fs.writeFileSync(outPath, text, "utf8");
+
+      console.log(`✅ Generated docs for ${filePath}`);
     } catch (err) {
-      console.error(`❌ Failed for ${file}:`, err.message);
+      console.error(`❌ Failed for ${filePath}:`, err.message);
     }
   }
 }

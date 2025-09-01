@@ -5,7 +5,12 @@ import OpenAI from "openai";
 const openai = new OpenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 // Root folder where your Java code lives
-const SRC_DIR = "./src/main/java/com/atomhudson/DSA/Data_Structures";
+// Root folder where your Java code lives
+// ❌ old (wrong for your repo)
+// const SRC_DIR = "./src/main/java/com/atomhudson/DSA/Data_Structures";
+
+// ✅ new (your actual repo structure)
+const SRC_DIR = "./Data_Structures";
 const BLOG_PATH = process.env.BLOG_PATH || "./docs";
 
 function getAllJavaFiles(dir) {

@@ -3,7 +3,7 @@ name: Auto Docs to Blog
 on:
   push:
     paths:
-      - '**.java'   # sirf Java file changes pe chalega
+      - '**.java'
 
 jobs:
   generate-docs:
@@ -15,7 +15,9 @@ jobs:
       - name: Get changed files
         id: files
         run: |
-          echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '\.java$' || true)" >> $GITHUB_OUTPUT
+          echo "files<<EOF" >> $GITHUB_OUTPUT
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '\.java$' || true >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Checkout Blog repo
         uses: actions/checkout@v3
@@ -24,13 +26,16 @@ jobs:
           path: blog
           token: ${{ secrets.BLOG_PAT }}
 
-      - name: Install Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
+      - name: Init Node project
+        run: npm init -y
+
       - name: Install deps
-        run: npm install openai @octokit/rest
+        run: npm install openai
 
       - name: Generate Docs with Gemini
         run: node .github/scripts/genDocs.js
@@ -47,5 +52,5 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add content/posts
-          git commit -m "Auto docs update from ${{ github.repository }}"
+          git commit -m "Auto docs update from ${{ github.repository }} @ ${{ github.sha }}" || echo "No changes to commit"
           git push

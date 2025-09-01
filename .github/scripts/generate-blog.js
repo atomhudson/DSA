@@ -38,13 +38,16 @@ async function run() {
   for (const file of files) {
     const code = fs.readFileSync(file, "utf-8");
 
+    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
     const response = await openai.chat.completions.create({
-      model: "gemini-1.5-pro",
+      model: "gpt-4o-mini",   // or "gpt-4o"
       messages: [
         { role: "system", content: "You are an AI that generates developer-friendly documentation in Markdown." },
         { role: "user", content: `Generate a detailed explanation of this Java class:\nFile: ${file}\nCode:\n${code}` }
       ]
     });
+
 
     const explanation = response.choices[0].message.content;
     const mdContent = `---

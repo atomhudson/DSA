@@ -44,7 +44,7 @@ jobs:
         run: npm install openai
 
       - name: Generate Docs with Gemini
-        run: node .github/scripts/genDocs.js
+        run: node .github/scripts/generate-blog.js
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           BLOG_PATH: blog/content/posts

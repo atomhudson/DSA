@@ -217,6 +217,7 @@
          System.out.println();
          System.out.print("Post-Order Traversal: ");postorder(root);
          System.out.println();
+         System.out.println();
          System.out.println("Size: " + size(root));
          System.out.println("Sum: " + sum(root));
          System.out.println("Max: " + max(root));

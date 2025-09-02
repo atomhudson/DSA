@@ -10,9 +10,9 @@ console.log("Raw FILES env var:", JSON.stringify(process.env.FILES));
 // Process changed .java files from GitHub Action
 const files = process.env.FILES
   ? process.env.FILES
-      .split('\n')                    // Split by newlines first
-      .map(f => f.trim())             // Remove whitespace
-      .filter(f => f && f.endsWith(".java")) // Filter for non-empty Java files
+      .split("\n") // Split by newlines first
+      .map((f) => f.trim()) // Remove whitespace
+      .filter((f) => f && f.endsWith(".java")) // Filter for non-empty Java files
   : [];
 
 console.log("Processed files array:", files);
@@ -25,6 +25,10 @@ async function generateDocs() {
   }
 
   console.log(`📝 Processing ${files.length} Java file(s):`, files);
+
+  // Repo info for GitHub links
+  const repoUrl = process.env.GITHUB_REPO || "https://github.com/atomhudson/DSA";
+  const commitSha = process.env.COMMIT_SHA || "main"; // fallback to latest main
 
   for (const filePath of files) {
     console.log(`\n🔍 Processing: ${filePath}`);
@@ -80,9 +84,12 @@ Please provide:
       // Ensure directory exists
       fs.mkdirSync(path.dirname(outPath), { recursive: true });
 
+      // Build GitHub link
+      const githubLink = `${repoUrl}/blob/${commitSha}/${filePath}`;
+
       // Add frontmatter for blog
       const blogContent = `---
-title: "${path.basename(filePath, '.java')} - Java Code Documentation"
+title: "${path.basename(filePath, ".java")} - Java Code Documentation"
 date: ${new Date().toISOString()}
 description: "Auto-generated documentation for ${filePath}"
 tags: ["java", "code-documentation", "automated"]
@@ -93,12 +100,14 @@ tags: ["java", "code-documentation", "automated"]
 ${text}
 
 ---
+
+🔗 [View Original Code on GitHub](${githubLink})
+
 *This documentation was automatically generated from the source code.*
 `;
 
       fs.writeFileSync(outPath, blogContent, "utf8");
       console.log(`✅ Generated docs for ${filePath} -> ${outPath}`);
-
     } catch (err) {
       console.error(`❌ Failed for ${filePath}:`, err.message);
       console.error("Full error:", err);
@@ -107,13 +116,20 @@ ${text}
 }
 
 // Add package.json type check
-if (!fs.existsSync('package.json')) {
+if (!fs.existsSync("package.json")) {
   console.log("Creating package.json with module type...");
-  fs.writeFileSync('package.json', JSON.stringify({
-    "name": "blog-generator",
-    "version": "1.0.0",
-    "type": "module"
-  }, null, 2));
+  fs.writeFileSync(
+    "package.json",
+    JSON.stringify(
+      {
+        name: "blog-generator",
+        version: "1.0.0",
+        type: "module",
+      },
+      null,
+      2
+    )
+  );
 }
 
 generateDocs().catch(console.error);

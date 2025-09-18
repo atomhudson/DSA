@@ -76,6 +76,22 @@ public class _018_Recursion {
     }
 
     // Optimized power calculation O(log Q)
+    /*
+    Function: P_ToThePower_Q(p, q)
+    Purpose:  Calculate p^q using fast exponentiation (recursive approach).
+
+    Example: 2^5
+    --------------------------------
+    Call: P_ToThePower_Q(2,5)
+      -> smallPow = P_ToThePower_Q(2, 2)
+         -> smallPow = P_ToThePower_Q(2, 1)
+            -> smallPow = P_ToThePower_Q(2, 0) = 1
+            -> since q=1 is odd => return 1*1*2 = 2
+         -> now q=2 is even => return 2*2 = 4
+      -> now q=5 is odd => return 4*4*2 = 32
+
+        Final Answer: 2^5 = 32
+    */
     static int P_ToThePower_Q(int p, int q) {
         if (q == 0) return 1;
         int smallPow = P_ToThePower_Q(p, q / 2);
@@ -85,6 +101,7 @@ public class _018_Recursion {
             return smallPow * smallPow * p;
         }
     }
+
 
     // Print first k multiples of a number
     static void kMultiples(int number, int k) {

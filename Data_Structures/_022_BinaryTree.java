@@ -125,7 +125,7 @@ public class _022_BinaryTree {
     }
 
     /**
-     * Computes the <b>Diameter of a Binary Tree</b>.
+     * <h2>Computes the Diameter of a Binary Tree.</h2>
      *
      * <p>The diameter of a binary tree is the <b>longest path</b> between any two nodes
      * in the tree. The path may or may not pass through the root. The diameter is
@@ -241,7 +241,7 @@ public class _022_BinaryTree {
 
     public static void nodeToRootPath(Node root, List<Integer> path){
         if (root == null) return;
-        path.add(Integer.valueOf(root.value));
+        path.add(root.value);
 
         // Print current node -> root path (reverse order of path list)
         System.out.print("Node " + root.value + " -> Root Path: ");
